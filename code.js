@@ -170,11 +170,19 @@ function escreverPorExtenso(vlr) {
           extenso = extenso + unidade[auxnumero];
         } else if ((auxnumero < 10) && ((i == 13) || (i == 10) || (i == 7) || (i == 4) || (i == 1))) {
           auxnumero3 = vlrS.substring(cont - i - 1, cont - i);
-          // Ensure to account for cases where there's a leading zero
-          if ((auxnumero3 != "1" || auxnumero3 === "") && auxnumero > 0) {
-            extenso = extenso + unidade[auxnumero];
-          }
-        }                
+          console.log(auxnumero3);
+          console.log(extenso);
+          if (auxnumero3 !== "" && auxnumero3 !== "0" && auxnumero3 !== "1")
+            extenso=extenso+unidade[auxnumero];
+              console.log(extenso);
+
+          // Original:
+          // else if((auxnumero<10)&&((i==13)||(i==10)||(i==7)||(i==4)||(i==1))) {
+          //   auxnumero3 = vlrS.substr(cont-i-1,1);
+          //   if((auxnumero3!="1")&&(auxnumero3!=""))
+          //   extenso=extenso+unidade[auxnumero];
+          // }
+        }
 
         if (i % 3 == 1) {
             verifica3 = cont - i;
