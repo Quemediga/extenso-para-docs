@@ -272,7 +272,7 @@ function escreverPorExtenso(vlr) {
 
 function converterParaExtenso() {
   const selection = doc.getSelection();
-      
+  
   if (selection) {
     const elements = selection.getRangeElements();
 
@@ -292,10 +292,8 @@ function converterParaExtenso() {
         Logger.log('endOffset is ' + endOffset);
         Logger.log('selectedText is ' + selectedText);
         
-        // const pattern = /(?:\s|R\$|\$)(\d{1,3}(?:\.\d{3})*,\d{2,4})/g;
         // Updated regex pattern to support both formats: with or without the thousands separator
-        // const pattern = /(?:\s|R\$|\$)(\d{1,3}(?:\.\d{3})*,\d{2}|\d{1,3},\d{2})/g;
-        const pattern = /(?:\s|R\$|\$)\s*(\d{1,3}(?:\.\d{3})*|\d+)(,\d{2})/g;
+        const pattern = /(?:\s|R\$|\$)(\d{1,3}(?:\.\d{3})*,\d{2}|\d{1,3},\d{2})/g;
        
         let newText = selectedText;
         let match;
@@ -323,6 +321,10 @@ function converterParaExtenso() {
           Logger.log('newText is ' + newText);
         }
 
+        while ((match = pattern.exec(selectedText)) === null) {
+          return DocumentApp.getUi().alert('Selecione apenas uma cifra e verifique se há o espaço entre $ e os números');
+        }
+
         if (!selectedText.includes('R$')) {
           DocumentApp.getUi().alert('Se não for valor em reais ajuste o texto manualmente!');
         }
@@ -343,7 +345,7 @@ function converterParaExtenso() {
           return;
         }
         
-        DocumentApp.getUi().alert('Selecione a cifra inteira, desde R$ e verifique se há separador de milhares');
+        DocumentApp.getUi().alert('Selecione a cifra inteira, desde R$, e verifique se há o espaço depois de $ e o separador de milhares');
         Logger.log('String selecionada é incompatível');
         return;
       }
