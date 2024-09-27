@@ -272,7 +272,7 @@ function escreverPorExtenso(vlr) {
 
 function converterParaExtenso() {
   const selection = doc.getSelection();
-  
+      
   if (selection) {
     const elements = selection.getRangeElements();
 
@@ -294,7 +294,8 @@ function converterParaExtenso() {
         
         // const pattern = /(?:\s|R\$|\$)(\d{1,3}(?:\.\d{3})*,\d{2,4})/g;
         // Updated regex pattern to support both formats: with or without the thousands separator
-        const pattern = /(?:\s|R\$|\$)(\d{1,3}(?:\.\d{3})*,\d{2}|\d{1,3},\d{2})/g;
+        // const pattern = /(?:\s|R\$|\$)(\d{1,3}(?:\.\d{3})*,\d{2}|\d{1,3},\d{2})/g;
+        const pattern = /(?:\s|R\$|\$)\s*(\d{1,3}(?:\.\d{3})*|\d+)(,\d{2})/g;
        
         let newText = selectedText;
         let match;
