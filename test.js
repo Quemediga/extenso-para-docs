@@ -71,7 +71,7 @@ function escreverPorExtenso(vlr) {
             auxnumero3 = vlrS.substring(cont - i - 1, cont - i);
             console.log(auxnumero3);
             console.log(extenso);
-            if (auxnumero3 !== "" && auxnumero3 !== "0" && auxnumero3 !== "1")
+            if ((auxnumero3 !== "1" || auxnumero > 9) && auxnumero3 !== "0")
               extenso=extenso+unidade[auxnumero];
                 console.log(extenso);
   
@@ -159,6 +159,10 @@ function escreverPorExtenso(vlr) {
         // if (inteiro === 1000) {
         //     extenso = extenso.replace("um mil reais", "mil reais");
         // }
+
+        while (extenso.includes("  ")) {
+          extenso = extenso.replace("  ", " ");
+        }
   
         extenso.trim(); // Remove whitespace from both sides of the string
   
@@ -168,5 +172,6 @@ function escreverPorExtenso(vlr) {
     return result; // Return the result instead of using document.getElementById
   }
 
-vlr = 1109.00;
+// To test a value for escreverPorExtenso(vlr), just run node test.js on the terminal
+vlr = 9921121112.00;
 console.log(escreverPorExtenso(vlr));

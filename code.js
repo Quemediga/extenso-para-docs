@@ -1,9 +1,9 @@
 // This is a Google Workspace Add-on (GWAO)
-// it's so the add-on can work accross the all documents on the user Docs app.
-// however, the user needs to click on the extension icon to iniate it, which is a limitation.
-// Editor Add-ons would work fine with just an onOpen(e) simple trigger for this extension.
-// However, Editor Add-ons needs to be bound and activated by the user for each document.
-// And activating it in document templates from Google Docs wouldn't transfer to the copies it creates.
+  // it's so the add-on can work accross the all documents on the user Docs app.
+  // The user needs to click on the extension icon to iniate it, which is a limitation of any GWAO.
+// On the other hand, an Editor Add-on would work fine with just an onOpen(e) simple trigger for this script.
+  // However, Editor Add-ons needs to be bound and activated by the user for each document, unlike GWAO.
+  // And activating it in document templates from Google Docs wouldn't transfer to the copies it creates.
 // It's using the CardService instead of HtmlService for the UI (sidebar).
 
 const doc = DocumentApp.getActiveDocument();
@@ -74,24 +74,24 @@ function updateLastDateToToday() {
   // Get today's date
   const today = new Date();
   
-  // Format the date in Portuguese
+  // Format the date in pt-br
   const options = { day: '2-digit', month: 'long', year: 'numeric' };
   const formattedDate = new Intl.DateTimeFormat('pt-BR', options).format(today);
   
   // Convert the formatted date to lowercase
   const formattedDateLowerCase = formattedDate.toLowerCase();
   
-  // Regular expression to match dates in the format "d de MMMM de yyyy" or "dº de MMMM de yyyy"
+  // Regular expression to also match dates in the format "d de MMMM de yyyy" and "dº de MMMM de yyyy"
   const datePattern = /\d{1,2}º? de [a-zçáéíóúãõ]+ de \d{4}/gi;
   
-  // Get the text of the document
+  // Get the text of the whole document
   const text = body.getText();
   
   // Find all matches of the date pattern
   const matches = text.match(datePattern);
   
   if (matches && matches.length > 0) {
-    // Get the last match
+    // Get the last match of the date pattern
     const lastMatch = matches[matches.length - 1];
     
     // Replace the last matched date with the formatted current date
@@ -99,18 +99,20 @@ function updateLastDateToToday() {
   }
 }
 
+// This is an algorithm I contributed with on Stack Overflow
+// I contributed by propely handling single-digits, solving special cases and adding proper formatting
 function escreverPorExtenso(vlr) {
   var Num = parseFloat(vlr);
-  var result = ""; // Use a variable to store the result instead of direct DOM manipulation
+  var result = ""; // Varieble to store the result
 
   if (vlr == 0) {
     result = "zero";
   } else if (vlr > 999 * 1e12) {
     return "Numero maior que 999 trilhões";
   } else {
-    var inteiro = parseInt(vlr); // parte inteira do valor
+    var inteiro = parseInt(vlr); // Integer part of the number
     if (inteiro < 1000000000000000) {
-      var resto = Num.toFixed(2) - inteiro.toFixed(2); // parte fracionária do valor
+      var resto = Num.toFixed(2) - inteiro.toFixed(2); // Decimal part of the number
       resto = resto.toFixed(2);
       var vlrS = inteiro.toString();
 
@@ -172,7 +174,7 @@ function escreverPorExtenso(vlr) {
           auxnumero3 = vlrS.substring(cont - i - 1, cont - i);
           console.log(auxnumero3);
           console.log(extenso);
-          if (auxnumero3 !== "" && auxnumero3 !== "0" && auxnumero3 !== "1")
+          if ((auxnumero3 !== "1" || auxnumero > 9) && auxnumero3 !== "0")
             extenso=extenso+unidade[auxnumero];
               console.log(extenso);
 
@@ -239,34 +241,36 @@ function escreverPorExtenso(vlr) {
           else extenso += " centavos";
       }
 
-      // Handle singular for "real" and "centavo"
+      // Handle special cases
       if (inteiro === 1) {
           extenso = extenso.replace("reais", "real");
       }
       if (resto === 1) {
           extenso = extenso.replace("centavos", "centavo");
       }
-      // Handle special case for "cem reais" (100 reais)
       if (inteiro === 100) {
         extenso = extenso.replace("cento  reais", "cem reais");  
         extenso = extenso.replace("cento reais", "cem reais");
       }
-      // Handle special case for "zero reais" (100 reais)
       if (inteiro === 0) {
         extenso = extenso.replace("reais  e ", "");
         extenso = extenso.replace("reais e ", "");
       }
-      // // Handle special case for "mil reais" (1000 reais)
+      // // Handle special case for "mil reais" (1000 reais) (optional)
       // if (inteiro === 1000) {
       //     extenso = extenso.replace("um mil reais", "mil reais");
       // }
 
-      extenso.trim(); // Remove whitespace from both sides of the string
+      // Proper formatting
+      while (extenso.includes("  ")) {
+        extenso = extenso.replace("  ", " ");
+      }
+      extenso.trim();
 
-      result = extenso; // Assign the final result to the variable
+      result = extenso;
     }
   }
-  return result; // Return the result instead of using document.getElementById
+  return result;
 }
 
 
@@ -292,7 +296,6 @@ function converterParaExtenso() {
         Logger.log('endOffset is ' + endOffset);
         Logger.log('selectedText is ' + selectedText);
         
-        // Updated regex pattern to support both formats: with or without the thousands separator
         const pattern = /(?:\s|R\$|\$)(\d{1,3}(?:\.\d{3})*,\d{2}|\d{1,3},\d{2})/g;
        
         let newText = selectedText;
@@ -301,42 +304,35 @@ function converterParaExtenso() {
         while ((match = pattern.exec(selectedText)) !== null) {
           let currencyString = match[1];
           
-          // Remove periods and replace commas for decimal format        
+          // Prepare the R$ cypher to parseFloat it in escreverPorExtenso()
           let textContent = currencyString.replace(/\./g, '').replace(',', '.');
 
           // Call escreverPorExtenso to convert the number to text
           let convertedText = escreverPorExtenso(textContent);
 
-          
-          // Clean up any unnecessary spaces
-          convertedText = convertedText.replace(/\s{2,}/g, ' ').trim();
-          while (convertedText.includes("( ")) {
-            convertedText = convertedText.replace("( ", "(");
-          }
-          while (convertedText.includes(" )")) {
-            convertedText = convertedText.replace(" )", ")");
-          }
-          
+          // Now I create the actual output         
           newText = newText.replace(currencyString, `${currencyString} (${convertedText})`).trim();
           Logger.log('newText is ' + newText);
         }
 
+        // Return feedback to the user
         while ((match = pattern.exec(selectedText)) === null) {
           return DocumentApp.getUi().alert('Selecione apenas uma cifra e verifique se há o espaço entre $ e os números');
         }
-
         if (!selectedText.includes('R$')) {
           DocumentApp.getUi().alert('Se não for valor em reais ajuste o texto manualmente!');
         }
 
         if (newText !== selectedText) {
-          // Inserir o texto convertido no mesmo lugar do texto selecionado
+          // Insert the convertedText at the same position as the the currencyString in Google Docs
           Logger.log('newText after loop is ' + newText);
-          newText += ' '; // Concatenar um espaço no final para posicionar o cursor
+          // Concatenate a space at the end of the string to position the cursor at it (so the user doesn't have to leave the keyboard)
+          newText += ' ';
           textElement.deleteText(startOffset, endOffset);
           textElement.insertText(startOffset, newText);
 
-          // Colocar o cursos no final de newText para seguir escrevendo, colocando - 1 para selecionar o espaço recém concatenado
+          // Put the cursor at the end of newText, then position -1 to select the space we concatenated to it (so the user can keep on writting)
+          // The user will be able to press Shift + Tab (move to the Close button) and Enter to close the GAWO UI and the cursor will be positioned already
           const newEndOffset = startOffset + newText.length - 1;
           const rangeBuilder = doc.newRange();
           rangeBuilder.addElement(textElement, newEndOffset, newEndOffset);
