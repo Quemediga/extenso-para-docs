@@ -33,7 +33,7 @@ Esta função identifica a última data do documento que esteja de acordo com qu
 
 Cifra por extenso: 
 
-Esta função escreve uma cifra em R$ por extenso. Para usá-lo, selecione um texto com uma cifra (i.e. R$ 12.865,72) e clique no botão. O algoritmo vai substituir "R$ 12.865,72" por "R$ 12.865,72 (doze mil oitocentos e sessenta e cinco reais e setenta e dois centavos)". A função também adiciona um espaço ao final e deixa o cursor selecionado sobre esse espaço. Isso serve para que você já possa adicionar um ponto, vírgula, ou seguir escrevendo sem interrupções e sem precisar pegar o mouse.
+Esta função escreve uma cifra em R$ por extenso. Para usá-lo, selecione um texto com uma cifra (i.e. R$ 12.865,72) e clique no botão. O algoritmo vai substituir "R$ 12.865,72" por "R$ 12.865,72 (doze mil oitocentos e sessenta e cinco reais e setenta e dois centavos)". A função também adiciona um espaço ao final e deixa o cursor selecionado sobre esse espaço. Isso serve para que você possa seguir escrevendo sem interrupções e sem precisar pegar o mouse. Para isso, pressione as teclas Shift+Tab e, então, Enter para selecionar e pressionar o botão ("X") para fechar a interface da extensão.
 
 Ambas as funções são acessadas pela interface da extensão no painel lateral de extensões do seu Google Docs. Caso não esteja aparecendo esse painel para você, procure o botão de seta (quase invisível) no canto inferior direito da tela do seu Google Docs.
 
