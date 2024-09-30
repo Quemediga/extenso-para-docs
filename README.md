@@ -39,9 +39,19 @@ Ambas as funções são acessadas pela interface da extensão no painel lateral 
 
 ## Privacy policy and terms of service
 
-[Privacy Policy](privacy-policy.md) for Extenso para Docs on Google Workspace Marketplace.
+### Contact for licensing or extending language support
 
-[Terms of Service](terms-of-service.md) for Extenso para Docs on Google Workspace Marketplace.
+To license this source code for commercial use, send an e-mail to extensoparadocs@carlosalegre.com.
+
+To build support for different countries/languages and currencies, send e-mail to extensoparadocs@carlosalegre.com.
+
+### Pages for Google Workspace Marketplace
+
+[Privacy Policy](privacy-policy.md) for Extenso para Docs on Google Workspace Marketplace (pt-br).
+
+[Terms of Service](terms-of-service.md) for Extenso para Docs on Google Workspace Marketplace (pt-br).
+
+[Support Page](support.md) for Extenso para Docs on Google Workspace Marketplace (pt-br).
 
 ## License and attribution
 ### License

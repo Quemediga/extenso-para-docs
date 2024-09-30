@@ -17,4 +17,4 @@ Esta política integra todos os fins de nossos [Termos de Uso](https://extensopa
 
 Esta política é regida, interpretada e executada conforme a legislação brasileira, em especial a LGPD. Fica eleito o foro de Porto Alegre, estado do Rio Grande do Sul, como competente para dirimir conflitos e reclamações oriundas da proteção de dados prevista nesta política, necessariamente a opção do juízo 100% digital.
 
-Última atualização em 16 de setembro de 2024.
+Última atualização em 30 de setembro de 2024.
