@@ -7,8 +7,8 @@ A extensão Extenso para Docs partiu de um projeto desenvolvido por seu mantened
 
 Informamos que valores em dólares "$" e valores abaixo de "R$ 10,00" irão funcionar, mas precisarão de ajustes manuais. Valores acima de 999 trilhões não são abarcados pela extensão, mas o usuário poderá utilizar até este limite e completar manualmente o valor nestes casos excepcionais.
 
-Para mais informações, acesse a [página da extensão](https://extensoparadocs.carlosalegre.com) no site de seu mantenedor, em [carlosalegre.com](https://carlosalegre.com).
+Para mais informações, acesse a [página da extensão](https://extensoparadocs.carlosalegre.com) no site de seu mantenedor.
 
-A estes termos se aplica a [Política de Privacidade](https://extensoparadocs.carlosalegre.com/privacy) da extensão Extenso para Docs.
+A estes termos se aplica a [Política de Privacidade](https://extensoparadocs.carlosalegre.com/privacy-policy) da extensão Extenso para Docs.
 
 Última atualização em 16 de setembro de 2024.

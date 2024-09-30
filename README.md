@@ -37,6 +37,12 @@ Esta função escreve uma cifra em R$ por extenso. Para usá-lo, selecione um te
 
 Ambas as funções são acessadas pela interface da extensão no painel lateral de extensões do seu Google Docs. Caso não esteja aparecendo esse painel para você, procure o botão de seta (quase invisível) no canto inferior direito da tela do seu Google Docs.
 
+## Privacy policy and terms of service
+
+[Privacy Policy](privacy-policy.md) for Extenso para Docs on Google Workspace Marketplace.
+
+[Terms of Service](terms-of-service.md) for Extenso para Docs on Google Workspace Marketplace.
+
 ## License and attribution
 ### License
 Shield: [![CC BY-NC 4.0][cc-by-nc-shield]][cc-by-nc]
