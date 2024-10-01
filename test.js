@@ -5,7 +5,9 @@ function escreverPorExtenso(vlr) {
   if (vlr == 0) {
     result = "zero reais";
   } else if (vlr >= 1000000000000000) {
-    return "Cifras acima dos trilhões não são compatíveis";
+    // The line below is different in this test file
+    console.log("cifras acima dos trilhões não são compatíveis");
+    return "";
   } else {
     var inteiro = parseInt(vlr); // Integer part of the number
     if (inteiro < 1000000000000000) {
@@ -97,29 +99,40 @@ function escreverPorExtenso(vlr) {
             verifica2 = parseInt(verifica1);
 
             if (i == 13) {
+              console.log('Verifica2 for trillions: ' + verifica2);
               if (verifica2 == 1) {
                 extenso = extenso + " " + qualificaS[4] + " ";
-              } else if (verifica2 != 0) { extenso = extenso + " " + qualificaP[4] + " "; }
+              } else if (verifica2 != 0) {
+                extenso = extenso + " " + qualificaP[4] + " ";
+              }
             }
             if (i == 10) {
               if (verifica2 == 1) {
                 extenso = extenso + " " + qualificaS[3] + " ";
-              } else if (verifica2 != 0) { extenso = extenso + " " + qualificaP[3] + " "; }
+              } else if (verifica2 != 0) {
+                extenso = extenso + " " + qualificaP[3] + " ";
+              }
             }
             if (i == 7) {
               if (verifica2 == 1) {
                 extenso = extenso + " " + qualificaS[2] + " ";
-              } else if (verifica2 != 0) { extenso = extenso + " " + qualificaP[2] + " "; }
+              } else if (verifica2 != 0) {
+                extenso = extenso + " " + qualificaP[2] + " ";
+              }
             }
             if (i == 4) {
               if (verifica2 == 1) {
                 extenso = extenso + " " + qualificaS[1] + " ";
-              } else if (verifica2 != 0) { extenso = extenso + " " + qualificaP[1] + " "; }
+              } else if (verifica2 != 0) {
+                extenso = extenso + " " + qualificaP[1] + " ";
+              }
             }
             if (i == 1) {
               if (verifica2 == 1) {
                 extenso = extenso + " " + qualificaS[0] + " ";
-              } else { extenso = extenso + " " + qualificaP[0] + " "; }
+              } else {
+                extenso = extenso + " " + qualificaP[0] + " ";
+              }
             }
           }
       }
@@ -173,5 +186,5 @@ function escreverPorExtenso(vlr) {
 }
 
 // To test a value for escreverPorExtenso(vlr), just run node test.js on the terminal
-vlr = 9921121112.00;
+vlr = 1999888777666555.00;
 console.log(escreverPorExtenso(vlr));
