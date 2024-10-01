@@ -107,13 +107,13 @@ function escreverPorExtenso(vlr) {
 
   if (vlr == 0) {
     result = "zero reais";
-  } else if (vlr >= 1000000000000000) {
-    DocumentApp.getUi().alert('Cifras acima dos trilhões não são compatíveis.');
-    console.log("cifras acima dos trilhões não são compatíveis");
+  } else if (vlr > 70000000000000) {
+    DocumentApp.getUi().alert('Cifras acima dos 70 trilhões não são compatíveis.');
+    console.log("cifras acima dos 70 trilhões não são compatíveis");
     return "";
   } else {
     var inteiro = parseInt(vlr); // Integer part of the number
-    if (inteiro < 1000000000000000) {
+    if (inteiro <= 70000000000000) {
       var resto = Num.toFixed(2) - inteiro.toFixed(2); // Decimal part of the number
       resto = resto.toFixed(2);
       var vlrS = inteiro.toString();

@@ -4,13 +4,13 @@ function escreverPorExtenso(vlr) {
 
   if (vlr == 0) {
     result = "zero reais";
-  } else if (vlr >= 1000000000000000) {
-    // The line below is different in this test file
-    console.log("cifras acima dos trilhões não são compatíveis");
+  } else if (vlr > 70000000000000) {
+    // DocumentApp.getUi().alert('Cifras acima dos 70 trilhões não são compatíveis.');
+    console.log("cifras acima dos 70 trilhões não são compatíveis");
     return "";
   } else {
     var inteiro = parseInt(vlr); // Integer part of the number
-    if (inteiro < 1000000000000000) {
+    if (inteiro <= 70000000000000) {
       var resto = Num.toFixed(2) - inteiro.toFixed(2); // Decimal part of the number
       resto = resto.toFixed(2);
       var vlrS = inteiro.toString();
@@ -186,5 +186,5 @@ function escreverPorExtenso(vlr) {
 }
 
 // To test a value for escreverPorExtenso(vlr), just run node test.js on the terminal
-vlr = 1999888777666555.00;
+vlr = 70000000000000.00;
 console.log(escreverPorExtenso(vlr));
