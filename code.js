@@ -189,69 +189,69 @@ function escreverPorExtenso(vlr) {
         }
 
         if (i % 3 == 1) {
-            verifica3 = cont - i;
-            if (verifica3 == 0)
-              verifica1 = vlrS.substring(cont - i, cont - i + 1);
+          verifica3 = cont - i;
+          if (verifica3 == 0)
+            verifica1 = vlrS.substring(cont - i, cont - i + 1);
 
-            if (verifica3 == 1)
-              verifica1 = vlrS.substring(cont - i - 1, cont - i + 1);
+          if (verifica3 == 1)
+            verifica1 = vlrS.substring(cont - i - 1, cont - i + 1);
 
-            if (verifica3 > 1)
-              verifica1 = vlrS.substring(cont - i - 2, cont - i + 1);
+          if (verifica3 > 1)
+            verifica1 = vlrS.substring(cont - i - 2, cont - i + 1);
 
-            verifica2 = parseInt(verifica1);
+          verifica2 = parseInt(verifica1);
 
-            if (i == 13) {
-              console.log('Verifica2 for trillions: ' + verifica2);
-              if (verifica2 == 1) {
-                extenso = extenso + " " + qualificaS[4] + " ";
-              } else if (verifica2 != 0) {
-                extenso = extenso + " " + qualificaP[4] + " ";
-              }
-            }
-            if (i == 10) {
-              if (verifica2 == 1) {
-                extenso = extenso + " " + qualificaS[3] + " ";
-              } else if (verifica2 != 0) {
-                extenso = extenso + " " + qualificaP[3] + " ";
-              }
-            }
-            if (i == 7) {
-              if (verifica2 == 1) {
-                extenso = extenso + " " + qualificaS[2] + " ";
-              } else if (verifica2 != 0) {
-                extenso = extenso + " " + qualificaP[2] + " ";
-              }
-            }
-            if (i == 4) {
-              if (verifica2 == 1) {
-                extenso = extenso + " " + qualificaS[1] + " ";
-              } else if (verifica2 != 0) {
-                extenso = extenso + " " + qualificaP[1] + " ";
-              }
-            }
-            if (i == 1) {
-              if (verifica2 == 1) {
-                extenso = extenso + " " + qualificaS[0] + " ";
-              } else {
-                extenso = extenso + " " + qualificaP[0] + " ";
-              }
+          if (i == 13) {
+            console.log('Verifica2 for trillions: ' + verifica2);
+            if (verifica2 == 1) {
+              extenso = extenso + " " + qualificaS[4] + " ";
+            } else if (verifica2 != 0) {
+              extenso = extenso + " " + qualificaP[4] + " ";
             }
           }
+          if (i == 10) {
+            if (verifica2 == 1) {
+              extenso = extenso + " " + qualificaS[3] + " ";
+            } else if (verifica2 != 0) {
+              extenso = extenso + " " + qualificaP[3] + " ";
+            }
+          }
+          if (i == 7) {
+            if (verifica2 == 1) {
+              extenso = extenso + " " + qualificaS[2] + " ";
+            } else if (verifica2 != 0) {
+              extenso = extenso + " " + qualificaP[2] + " ";
+            }
+          }
+          if (i == 4) {
+            if (verifica2 == 1) {
+              extenso = extenso + " " + qualificaS[1] + " ";
+            } else if (verifica2 != 0) {
+              extenso = extenso + " " + qualificaP[1] + " ";
+            }
+          }
+          if (i == 1) {
+            if (verifica2 == 1) {
+              extenso = extenso + " " + qualificaS[0] + " ";
+            } else {
+              extenso = extenso + " " + qualificaP[0] + " ";
+            }
+          }
+        }
       }
       resto = resto * 100;
       var aexCent = 0;
       if (resto <= 19 && resto > 0)
-          extenso += " e " + unidade[resto] + " centavos";
+        extenso += " e " + unidade[resto] + " centavos";
       if (resto > 19) {
-          aexCent = parseInt(resto / 10);
+        aexCent = parseInt(resto / 10);
 
-          extenso += " e " + dezena[aexCent];
-          resto = resto - (aexCent * 10);
+        extenso += " e " + dezena[aexCent];
+        resto = resto - (aexCent * 10);
 
-          if (resto != 0)
-              extenso += " e " + unidade[resto] + " centavos";
-          else extenso += " centavos";
+        if (resto != 0)
+            extenso += " e " + unidade[resto] + " centavos";
+        else extenso += " centavos";
       }
 
       // Handle special cases
