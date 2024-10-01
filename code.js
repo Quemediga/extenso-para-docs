@@ -19,7 +19,7 @@ function createHomePage() {
     .setHeader(CardService.newCardHeader().setTitle('Extenso para Docs'))
     .addSection(
       CardService.newCardSection()
-        .addWidget(CardService.newTextParagraph().setText("Escolha uma ação:"))
+        .addWidget(CardService.newTextParagraph().setText('Escolha uma ação:'))
         .addWidget(
           CardService.newTextButton()
             .setText('Cifra por extenso')
@@ -267,6 +267,8 @@ function escreverPorExtenso(vlr) {
       }
       extenso.trim();
 
+      Logger.log('extenso result is: ' + extenso);
+
       result = extenso;
     }
   }
@@ -283,7 +285,7 @@ function converterParaExtenso() {
     for (let i = 0; i < elements.length; i++) {
       let element = elements[i];
 
-      Logger.log('element[i] looping is' + element);
+      Logger.log('element[i] looping is: ' + element);
 
       if (element.getElement().editAsText) {
         const textElement = element.getElement().asText();
@@ -291,10 +293,10 @@ function converterParaExtenso() {
         const endOffset = element.getEndOffsetInclusive();
         const selectedText = textElement.getText().substring(startOffset, endOffset + 1);
 
-        Logger.log('textElement is ' + textElement);
-        Logger.log('startOffset is ' + startOffset);
-        Logger.log('endOffset is ' + endOffset);
-        Logger.log('selectedText is ' + selectedText);
+        Logger.log('textElement is: ' + textElement);
+        Logger.log('startOffset is: ' + startOffset);
+        Logger.log('endOffset is: ' + endOffset);
+        Logger.log('selectedText is: ' + selectedText);
         
         const pattern = /(?:\s|R\$|\$)(\d{1,3}(?:\.\d{3})*,\d{2}|\d{1,3},\d{2})/g;
        
@@ -310,9 +312,20 @@ function converterParaExtenso() {
           // Call escreverPorExtenso to convert the number to text
           let convertedText = escreverPorExtenso(textContent);
 
-          // Now I create the actual output         
+          // Now I create the actual output
           newText = newText.replace(currencyString, `${currencyString} (${convertedText})`).trim();
-          Logger.log('newText is ' + newText);
+          Logger.log('newText before formatting is: ' + newText);
+
+          // And make sure it's properly formatted
+          while (convertedText.includes('  ')) {
+            convertedText = convertedText.replace('  ', ' ');
+          };
+          while (convertedText.includes('( ')) {
+            convertedText = convertedText.replace('( ', '(');
+          };
+          while (convertedText.includes(' )')) {
+            convertedText = convertedText.replace(' )', ')');
+          };
         }
 
         // Return feedback to the user
@@ -323,9 +336,9 @@ function converterParaExtenso() {
           DocumentApp.getUi().alert('Se não for valor em reais ajuste o texto manualmente!');
         }
 
+        // Insert the convertedText at the same position as the the currencyString in Google Docs
         if (newText !== selectedText) {
-          // Insert the convertedText at the same position as the the currencyString in Google Docs
-          Logger.log('newText after loop is ' + newText);
+          Logger.log('newText when ready is: ' + newText);
           // Concatenate a space at the end of the string to position the cursor at it (so the user doesn't have to leave the keyboard)
           newText += ' ';
           textElement.deleteText(startOffset, endOffset);
