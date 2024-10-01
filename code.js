@@ -19,7 +19,7 @@ function createHomePage() {
     .setHeader(CardService.newCardHeader().setTitle('Extenso para Docs'))
     .addSection(
       CardService.newCardSection()
-        .addWidget(CardService.newTextParagraph().setText('Escolha uma ação:'))
+        .addWidget(CardService.newTextParagraph().setText("Escolha uma ação:"))
         .addWidget(
           CardService.newTextButton()
             .setText('Cifra por extenso')
@@ -106,9 +106,9 @@ function escreverPorExtenso(vlr) {
   var result = ""; // Varieble to store the result
 
   if (vlr == 0) {
-    result = "zero";
-  } else if (vlr > 999 * 1e12) {
-    return "Numero maior que 999 trilhões";
+    result = "zero reais";
+  } else if (vlr >= 1000000000000000) {
+    return "Cifras acima dos trilhões não são compatíveis";
   } else {
     var inteiro = parseInt(vlr); // Integer part of the number
     if (inteiro < 1000000000000000) {
@@ -267,7 +267,7 @@ function escreverPorExtenso(vlr) {
       }
       extenso.trim();
 
-      Logger.log('extenso result is: ' + extenso);
+      console.log('extenso result is: ' + extenso);
 
       result = extenso;
     }
@@ -285,7 +285,7 @@ function converterParaExtenso() {
     for (let i = 0; i < elements.length; i++) {
       let element = elements[i];
 
-      Logger.log('element[i] looping is: ' + element);
+      console.log('element[i] looping is: ' + element);
 
       if (element.getElement().editAsText) {
         const textElement = element.getElement().asText();
@@ -293,10 +293,10 @@ function converterParaExtenso() {
         const endOffset = element.getEndOffsetInclusive();
         const selectedText = textElement.getText().substring(startOffset, endOffset + 1);
 
-        Logger.log('textElement is: ' + textElement);
-        Logger.log('startOffset is: ' + startOffset);
-        Logger.log('endOffset is: ' + endOffset);
-        Logger.log('selectedText is: ' + selectedText);
+        console.log('textElement is: ' + textElement);
+        console.log('startOffset is: ' + startOffset);
+        console.log('endOffset is: ' + endOffset);
+        console.log('selectedText is: ' + selectedText);
         
         const pattern = /(?:\s|R\$|\$)(\d{1,3}(?:\.\d{3})*,\d{2}|\d{1,3},\d{2})/g;
        
@@ -312,20 +312,19 @@ function converterParaExtenso() {
           // Call escreverPorExtenso to convert the number to text
           let convertedText = escreverPorExtenso(textContent);
 
+          // Clean up any unnecessary spaces
+          convertedText = convertedText.replace(/\s{2,}/g, ' ').trim();
+          while (convertedText.includes("( ")) {
+            convertedText = convertedText.replace("( ", "(");
+          }
+          while (convertedText.includes(" )")) {
+            convertedText = convertedText.replace(" )", ")");
+          }
+
           // Now I create the actual output
           newText = newText.replace(currencyString, `${currencyString} (${convertedText})`).trim();
-          Logger.log('newText before formatting is: ' + newText);
+          console.log('newText output from the loop is: ' + newText);
 
-          // And make sure it's properly formatted
-          while (convertedText.includes('  ')) {
-            convertedText = convertedText.replace('  ', ' ');
-          };
-          while (convertedText.includes('( ')) {
-            convertedText = convertedText.replace('( ', '(');
-          };
-          while (convertedText.includes(' )')) {
-            convertedText = convertedText.replace(' )', ')');
-          };
         }
 
         // Return feedback to the user
@@ -338,9 +337,10 @@ function converterParaExtenso() {
 
         // Insert the convertedText at the same position as the the currencyString in Google Docs
         if (newText !== selectedText) {
-          Logger.log('newText when ready is: ' + newText);
+          console.log('newText when ready is: ' + newText);
           // Concatenate a space at the end of the string to position the cursor at it (so the user doesn't have to leave the keyboard)
           newText += ' ';
+          // Insert the text on it's original position on the document
           textElement.deleteText(startOffset, endOffset);
           textElement.insertText(startOffset, newText);
 
@@ -355,12 +355,12 @@ function converterParaExtenso() {
         }
         
         DocumentApp.getUi().alert('Selecione a cifra inteira, desde R$, e verifique se há o espaço depois de $ e o separador de milhares');
-        Logger.log('String selecionada é incompatível');
+        console.log('String selecionada é incompatível');
         return;
       }
     }
   }
   DocumentApp.getUi().alert('Nenhum texto compatível selecionado');
-  Logger.log('Nenhum texto compatível selecionado');
+  console.log('Nenhum texto compatível selecionado');
   return;
 }
