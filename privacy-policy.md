@@ -1,13 +1,33 @@
 # Política de Privacidade
 Caro usuário,
 
-Esta política de privacidade insttui regras sobre uso e coleta de dados para clientes da extensão Extenso para Docs, do Google Workspace. Ao utilizar a extensão você concorda com esta política e assume o dever de acompanhar alterações que possam eventualmente ser feitas a ela.
+Esta política de privacidade institui regras sobre uso e coleta de dados para clientes da extensão Extenso para Docs, do Google Workspace. Ao utilizar a extensão você concorda com esta política e assume o dever de acompanhar alterações que possam eventualmente ser feitas a ela.
 
-Avisamos que nossas políticas poderão ter links para sites externos que não são operados pelo mantenedor desta extensão, e que nossos usuários devem estar cientes de que não temos controle sobre o conteúdo e práticas desses sites, e não nos responsabilkizamos por suas respectivas políticas de privacidade, que devem ser analisadas por cada usuário antes do fornecimento de dados.
+### Breve descrição do produto
+Esta extensão possui duas funcionalidades principais e sua respectiva integração com o Google Docs. Para tanto, esta extensão utiliza as permissões para acessar, visualizar e alterar seus documentos no Google Docs, e as permissões do Google Apps Script para exibir a interface da extensão em seu aplicativo Google Docs e instalar gatilhos para acionar as funções, conforme descrito nos [Termos de Uso](https://extensoparadocs.carlosalegre.com/terms-of-service). As funcionalidades são acionadas por meio de botões, sendo que uma delas escreve cifras em "R$" por extenso, coletando a cifra selecionada como input, e a outra funcionalidade atualiza a última data escrita por extenso no corpo do documento.
 
-Esta extensão possui dois algoritmos e sua respectiva integração com o Google Docs, e utiliza as permissões para alterar seus documentos no Google Docs, e as permissões do Google Apps Script para exibir a interface da extensão em seu aplicativo Google Docs e instalar gatilhos para acionar as funções, conforme descrito nos [Termos de Uso](https://extensoparadocs.carlosalegre.com/terms-of-service). O algoritmo que atualiza a data por extenso é acionado por meio de um botão na interface da extensão. Já o algoritmo que escreve cifras em "R$" por extenso será acionado da mesma forma, mas desde que haja uma cifra selecionada pelo usuário ao acionar-se a função. Nenhuma das funções coleta dados dos usuários, e a extensão não é vinculada a nenhum banco de dados próprio.
+### Sobre os dados de usuários do Google
+Esta extensão coleta os seguintes dados dos usuários do Google e os utiliza para fins de autenticação:
+- e-mail principal da conta do Google.
+- informações pessoais.
+- id do usuário.
 
-A extensão Extenso para Docs partiu de um projeto desenvolvido por seu mantenedor no escritório de advocacia [Rocchi & Dias Advogados Associados](https://rocchiedias.adv.br), seu parceiro comercial e local de trabalho. A extensão e seu mantenedor não coletam dados sensíveis de seus usuários, coletando apenas cookies de utilização, informação sobre tipo de dispositivo e navegador e outros dados anonimizados coletados pelo Google Analytics.
+Esta extensão poderá coletar os seguintes dados anônimos com Google Analytics:
+- dados de utilização.
+- informação sobre tipo de dispositivo.
+- informação sobre tipo de navegador.
+
+Esta extensão retém suas informações pelo tempo necessário para a cumprimento das finalidades descritas nesta política, salvo se um período de retenção maior for requisitado ou permitido por lei. A exclusão de dados poderá ser solicitada ao mantenedor da extensão no endereço de e-mail descrito ao final desta política.
+
+Esta extensão não vende, transfere ou fornece dados dos usuários do Google a terceiros.
+
+Esta extensão solicita acesso aos dados do Google Docs dos usuários e os utiliza exclusivamente para as finalidades a que se propõe:
+- leitura e edição do documento ativo.
+- tratamento de trechos de texto selecionados pelo usuário (inputs).
+
+Como forma de proteção de dados sensíveis relacionados dos documentos dos usuários do Google, os dados sensíveis coletados dos usuários são utilizados exclusivamente durante a execução das funcionalidades da extensão, não havendo retenção destes dados pelo mantenedor da extensão. Esta extensão não armazena estes dados e nem é vinculada a nenhum banco de dados próprio.
+
+Caso você delete todas as conexões da sua conta Google com a extensão Extenso para Docs, não será possível recuperar os dados excluídos. Neste caso, para voltar a usar as funcionalides o usuário deverá instalar e autenticar a extensão novamente. A exclusão dos dados poderá ocorrer em Gerenciamento da Conta Google > Dados e Privacidade > Dados de apps e serviços que você usa > Apps e serviços de terceiros > Extenso para Docs, pressionando o botão para deletar todas as conexões que você possui com Extenso para Docs.
 
 A esta extensão se aplicam os termos do Google e Google Analytics:
 1. Quando você navega em nosso site, fazemos a coleta de dados na navegação por meio do Google Analytics 4.0 para fins de análise de número de usuários, tipos de dispositivos utilizados, tempo de navegação e mais links acessados. Recomendamos a leitura da política de privacidade do Google Analytics 4.0, e você pode começar [clicando aqui](https://support.google.com/analytics/answer/11593727?hl=pt-BR&ref_topic=1008008).
@@ -17,4 +37,4 @@ Esta política integra todos os fins de nossos [Termos de Uso](https://extensopa
 
 Esta política é regida, interpretada e executada conforme a legislação brasileira, em especial a LGPD. Fica eleito o foro de Porto Alegre, estado do Rio Grande do Sul, como competente para dirimir conflitos e reclamações oriundas da proteção de dados prevista nesta política, necessariamente a opção do juízo 100% digital.
 
-Última atualização em 30 de setembro de 2024.
+Última atualização em 07 de outubro de 2024.
