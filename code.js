@@ -36,13 +36,13 @@ function createHomePage() {
   return card;
 }
 
-// Helper function to create a notification card
-function createNotificationCard(message) {
-  return CardService.newCardBuilder()
-    .setHeader(CardService.newCardHeader().setTitle('Ação finalizada'))
-    .addSection(
-      CardService.newCardSection().addWidget(CardService.newTextParagraph().setText(message))
-    )
+// Helper function to create alerts with the build method
+function showAlert(message) {
+  const ui = DocumentApp.getUi();
+  ui.alert(message); // Exibe um alerta padrão no Google Docs.
+  
+  return CardService.newActionResponseBuilder()
+    .setNotification(CardService.newNotification().setText(message))
     .build();
 }
 
@@ -108,7 +108,7 @@ function escreverPorExtenso(vlr) {
   if (vlr == 0) {
     result = "zero reais";
   } else if (vlr > 70000000000000) {
-    DocumentApp.getUi().alert('Cifras acima dos 70 trilhões não são compatíveis.');
+    showAlert('Cifras acima dos 70 trilhões não são compatíveis.');
     console.log("cifras acima dos 70 trilhões não são compatíveis");
     return "";
   } else {
@@ -342,10 +342,10 @@ function converterParaExtenso() {
 
         // Return feedback to the user
         while ((match = pattern.exec(selectedText)) === null) {
-          return DocumentApp.getUi().alert('Selecione apenas uma cifra e verifique se há o espaço entre $ e os números');
+          return showAlert('Selecione uma cifra válida no formato: R$ X.XXX,XX');
         }
         if (!selectedText.includes('R$')) {
-          DocumentApp.getUi().alert('Se não for valor em reais ajuste o texto manualmente!');
+          showAlert('Se não for valor em reais ajuste o texto manualmente!');
         }
 
         // Insert the convertedText at the same position as the the currencyString in Google Docs
@@ -367,13 +367,11 @@ function converterParaExtenso() {
           return;
         }
         
-        DocumentApp.getUi().alert('Selecione a cifra inteira, desde R$, e verifique se há o espaço depois de $ e o separador de milhares');
         console.log('String selecionada é incompatível');
-        return;
+        return showAlert('Selecione a cifra inteira no formato: R$ X.XXX,XX');
       }
     }
   }
-  DocumentApp.getUi().alert('Nenhum texto compatível selecionado');
   console.log('Nenhum texto compatível selecionado');
-  return;
+  return showAlert('Nenhum texto compatível selecionado');
 }
