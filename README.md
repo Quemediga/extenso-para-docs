@@ -70,3 +70,5 @@ This work is licensed under a
 Credits attribution: https://extensoparadocs.carlosalegre.com
 
 Author: [@Quemediga](https://github.com/Quemediga)
+
+This project is created and managed by [Carlos Alegre](https://alegreadvocacia.com.br/autores/carlos-alegre), founder and solo developer of [PageRush: Instant websites](https://pagerush.online/pages/lp).
